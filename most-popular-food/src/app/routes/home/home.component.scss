@@ -1,6 +1,8 @@
-.states{
-    svg path:hover {
-    fill: #aaddff;
-    cursor: pointer;
-    }
+.states path {
+  transition: filter 0.3s ease;
+}
+
+.states path[fill="#f9f9f9"]:hover {
+  filter: brightness(0.7);
+  cursor: pointer;
 }
