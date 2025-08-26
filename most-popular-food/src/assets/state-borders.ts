@@ -1,4 +1,4 @@
-export const stateBorders: { [key: string]: string[] } = {
+export const STATE_BORDERS: { [key: string]: string[] } = {
   AL: ["MS", "TN", "GA", "FL"],
   AK: [],
   AZ: ["CA", "NV", "UT", "CO", "NM"],
