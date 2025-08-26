@@ -1,5 +1,14 @@
-<h2>Round: {{currentRound}}</h2>
-<div [innerHTML]="usMapSvg | safeHtml" (click)="onClick($event)" class="states"></div>
+<h2>Round: {{ currentRound }}</h2>
+<div
+  [innerHTML]="usMapSvg | safeHtml"
+  (click)="onClick($event)"
+  class="states"
+></div>
 
-<h2>State is {{currentlyAway}} Away</h2>
+<h2>State is {{ currentlyAway }} Away</h2>
 
+<img
+  src="https://www.imdb.com/title/tt0056592/mediaviewer/rm3330294528/?ref_=tt_ov_i"
+  width="400"
+  height="500"
+/>
