@@ -1,4 +1,4 @@
-export const FILL_COLORS: Record<string | number,string> ={
+export const FILL_COLORS: Record<string | number, string> ={
     current: '#4dff00ff',
     1: '#ffcc00',
     2: '#ffa600ff',

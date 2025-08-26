@@ -1,0 +1,102 @@
+{
+  "AL": {
+    "film": [
+      {
+        "title": "To Kill a Mockingbird",
+        "year": 1962,
+        "coverImage": "",
+        "supportingImages": [""],
+        "description": ""
+      },
+      {
+        "title": "Hart of Dixie",
+        "year": 2011,
+        "coverImage": "",
+        "supportingImages": [""],
+        "description": ""
+      },
+      {
+        "title": "Big Fish",
+        "year": 2003,
+        "coverImage": "",
+        "supportingImages": [""],
+        "description": ""
+      }
+    ]
+  },
+  "AK": {
+    "film": [
+      {
+        "title": "Northern Exposure",
+        "year": 1990,
+        "coverImage": "",
+        "supportingImages": [""],
+        "description": ""
+      },
+      {
+        "title": "Into the Wild",
+        "year": 2007,
+        "coverImage": "",
+        "supportingImages": [""],
+        "description": ""
+      },
+      {
+        "title": "The Grey", 
+        "year": 2011,
+        "coverImage":"",
+        "supportingImages":[""],
+        "description": ""
+      }
+    ]
+  },
+  "AZ": {
+    "film": [
+        {
+            "title": "Bill & Ted`s Excellent Adventure",
+            "year": 1989,
+            "coverImage": "",
+            "supportingImages": [""],
+            "description" : ""
+        },
+        {
+            "title": "Breaking Bad",
+            "year": 2008, 
+            "coverImage": "",
+            "supportingImages": [""],
+            "description": ""
+        },
+        {
+            "title": "Tombstone",
+            "year": 1993,
+            "coverImage": "",
+            "supportingImages": [""],
+            "description": ""
+        }
+    ]
+  },
+  "AR": {
+    "film": [
+        {
+            "title": "True Detective Season 3",
+            "year": 2019,
+            "coverImage": "",
+            "supportingImages": [""],
+            "description": ""
+        },
+        {
+            "title": "Mud",
+            "year": 2012,
+            "coverImage": "",
+            "supportingImages": [""],
+            "description": ""
+        },
+        {
+            "title": "Sling Blade",
+            "year": 1996,
+            "coverImage": "",
+            "supportingImages": [""],
+            "description": ""
+        }
+    ]
+  }
+}

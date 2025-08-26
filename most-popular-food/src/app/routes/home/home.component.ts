@@ -5,14 +5,13 @@ import { STATE_BORDERS } from '../../../assets/state-borders';
 import { FILL_COLORS } from '../../../assets/fill-colors';
 import { PLAYABLE_STATES } from '../../../assets/playable-states';
 @Component({
-    standalone: true,
-    imports: [SafeHtmlPipe],
-    selector: 'app-home',
-    templateUrl: 'home.component.html',
-    styleUrl: 'home.component.scss',
-    encapsulation: ViewEncapsulation.None
+  standalone: true,
+  imports: [SafeHtmlPipe],
+  selector: 'app-home',
+  templateUrl: 'home.component.html',
+  styleUrl: 'home.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
-
 export class HomeComponent implements OnInit {
   usMapSvg: string = '';
 
@@ -20,18 +19,17 @@ export class HomeComponent implements OnInit {
   readonly FILL_COLORS = FILL_COLORS;
   readonly PLAYABLE_STATES = PLAYABLE_STATES;
 
-  private currentState = ''
+  private currentState = '';
   currentlyAway = 0;
   currentRound = 0;
   private correctStates = new Set<string>();
 
-
   ngOnInit() {
     fetch('assets/us.svg')
-      .then(res => res.text())
-      .then(svg => {
-        this.usMapSvg = svg; 
-    })
+      .then((res) => res.text())
+      .then((svg) => {
+        this.usMapSvg = svg;
+      });
 
     this.getNewState();
   }
@@ -44,8 +42,7 @@ export class HomeComponent implements OnInit {
     const stateId = target.dataset['id'];
     if (!stateId) return;
 
-    if(this.correctStates.has(stateId)) return;
-
+    if (this.correctStates.has(stateId)) return;
 
     if (stateId === this.currentState) {
       this.setFill(target, this.FILL_COLORS['current']);
@@ -60,9 +57,8 @@ export class HomeComponent implements OnInit {
     this.setFill(target, fill);
   }
 
-  
   private resetColors() {
-    document.querySelectorAll<HTMLElement>('path').forEach(path => {
+    document.querySelectorAll<HTMLElement>('path').forEach((path) => {
       const id = path.dataset['id'];
       if (id && this.correctStates.has(id)) {
         this.setFill(path, this.FILL_COLORS['current']);
@@ -72,9 +68,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  private getNewState(){
-    if(PLAYABLE_STATES.length === 0){
+  private getNewState() {
+    if (PLAYABLE_STATES.length === 0) {
       //There should be no more playable states
 
       return;
@@ -95,26 +90,26 @@ export class HomeComponent implements OnInit {
     return this.FILL_COLORS[distance] ?? this.FILL_COLORS['default'];
   }
 
-  private bfs(clickedState: string | undefined): number{
-    if(!clickedState){
-        return 0;
+  private bfs(clickedState: string | undefined): number {
+    if (!clickedState) {
+      return 0;
     }
-    const q = [{state: clickedState as string, distance: 0}];
+    const q = [{ state: clickedState as string, distance: 0 }];
     const visited = new Set();
     visited.add(clickedState);
-    while(q.length > 0){
-        const front = q.shift();
-        if(!front) continue;
-        if(front.state === this.currentState){
-            return front.distance;
+    while (q.length > 0) {
+      const front = q.shift();
+      if (!front) continue;
+      if (front.state === this.currentState) {
+        return front.distance;
+      }
+      const neighbors = this.STATE_BORDERS[front.state];
+      for (const neighbor of neighbors) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          q.push({ state: neighbor, distance: front.distance + 1 });
         }
-        const neighbors = this.STATE_BORDERS[front.state];
-        for(const neighbor of neighbors){
-            if(!visited.has(neighbor)){
-                visited.add(neighbor);
-                q.push({state: neighbor, distance: front.distance + 1});
-            }
-        }
+      }
     }
     return 0;
   }
