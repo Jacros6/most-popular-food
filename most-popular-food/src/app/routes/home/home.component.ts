@@ -3,6 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 import { STATE_BORDERS } from '../../../assets/state-borders';
 import { FILL_COLORS } from '../../../assets/fill-colors';
+import { PLAYABLE_STATES } from '../../../assets/playable-states';
 @Component({
     standalone: true,
     imports: [SafeHtmlPipe],
@@ -14,11 +15,15 @@ import { FILL_COLORS } from '../../../assets/fill-colors';
 
 export class HomeComponent implements OnInit {
   usMapSvg: string = '';
-  readonly STATE_BORDERS = STATE_BORDERS
+
+  readonly STATE_BORDERS = STATE_BORDERS;
   readonly FILL_COLORS = FILL_COLORS;
-  currentState = 'CA'
+  readonly PLAYABLE_STATES = PLAYABLE_STATES;
+
+  private currentState = ''
   currentlyAway = 0;
   currentRound = 0;
+  private correctStates = new Set<string>();
 
 
   ngOnInit() {
@@ -26,8 +31,9 @@ export class HomeComponent implements OnInit {
       .then(res => res.text())
       .then(svg => {
         this.usMapSvg = svg; 
-
     })
+
+    this.getNewState();
   }
 
   onClick(event: Event) {
@@ -38,16 +44,47 @@ export class HomeComponent implements OnInit {
     const stateId = target.dataset['id'];
     if (!stateId) return;
 
+    if(this.correctStates.has(stateId)) return;
+
 
     if (stateId === this.currentState) {
       this.setFill(target, this.FILL_COLORS['current']);
-      // TODO: get a new fresh state
+      this.correctStates.add(stateId);
+      this.resetColors();
+      this.getNewState();
       return;
     }
 
     this.currentlyAway = this.bfs(stateId);
     const fill = this.getFillColor(this.currentlyAway);
     this.setFill(target, fill);
+  }
+
+  
+  private resetColors() {
+    document.querySelectorAll<HTMLElement>('path').forEach(path => {
+      const id = path.dataset['id'];
+      if (id && this.correctStates.has(id)) {
+        this.setFill(path, this.FILL_COLORS['current']);
+      } else {
+        this.setFill(path, '#f9f9f9'); // base/neutral
+      }
+    });
+  }
+
+
+  private getNewState(){
+    if(PLAYABLE_STATES.length === 0){
+      //There should be no more playable states
+
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * PLAYABLE_STATES.length);
+    this.currentState = PLAYABLE_STATES[randomIndex];
+    this.currentRound++;
+    const removedElement = PLAYABLE_STATES.splice(randomIndex, 1)[0];
+    console.log(this.currentState, PLAYABLE_STATES);
   }
 
   private setFill(element: HTMLElement, color: string) {
