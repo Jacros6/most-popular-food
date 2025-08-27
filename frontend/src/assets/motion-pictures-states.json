@@ -1,102 +1,229 @@
 {
   "AL": {
-    "film": [
+    "media": [
       {
-        "title": "To Kill a Mockingbird",
-        "year": 1962,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 595,
+        "isTv": false
       },
       {
-        "title": "Hart of Dixie",
-        "year": 2011,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 39279,
+        "isTv": true
       },
       {
-        "title": "Big Fish",
-        "year": 2003,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 1633,
+        "isTv": false
       }
     ]
   },
   "AK": {
-    "film": [
+    "media": [
       {
-        "title": "Northern Exposure",
-        "year": 1990,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 5915,
+        "isTv": false
       },
       {
-        "title": "Into the Wild",
-        "year": 2007,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 75174,
+        "isTv": false
       },
       {
-        "title": "The Grey", 
-        "year": 2011,
-        "coverImage":"",
-        "supportingImages":[""],
-        "description": ""
+        "id": 18240,
+        "isTv": false
       }
     ]
   },
   "AZ": {
-    "film": [
-        {
-            "title": "Bill & Ted`s Excellent Adventure",
-            "year": 1989,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description" : ""
-        },
-        {
-            "title": "Breaking Bad",
-            "year": 2008, 
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        },
-        {
-            "title": "Tombstone",
-            "year": 1993,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        }
+    "media": [
+      {
+        "id": 11969,
+        "isTv": false
+      },
+      {
+        "id": 5176,
+        "isTv": false
+      },
+      {
+        "id": 15613,
+        "isTv": false
+      }
     ]
   },
   "AR": {
-    "film": [
-        {
-            "title": "True Detective Season 3",
-            "year": 2019,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        },
-        {
-            "title": "Mud",
-            "year": 2012,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        },
-        {
-            "title": "Sling Blade",
-            "year": 1996,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        }
+    "media": [
+      {
+        "id": 12498,
+        "isTv": false
+      },
+      {
+        "id": 103731,
+        "isTv": false
+      },
+      {
+        "id": 44264,
+        "isTv": false
+      }
+    ]
+  },
+  "CA": {
+    "media": [
+      {
+        "id": 313369,
+        "isTv": false
+      },
+      {
+        "id": 115,
+        "isTv": false
+      },
+      {
+        "id":1447,
+        "isTv": true
+      }
+    ]
+  },
+  "CO": {
+    "media": [
+      {
+        "id": 694,
+        "isTv": false
+      },
+      {
+       "id": 800359,
+       "isTv": false 
+      },
+      {
+        "id": 2190,
+        "isTv": true
+      }
+    ]
+  },
+  "CT": {
+    "media": [
+      {
+        "id": 4148,
+        "isTv": false
+      }
+    ]
+  },
+  "DE": {
+    "media": [
+      {
+        "id": 188166,
+        "isTv": false
+      },
+      {
+        "id": 13531,
+        "isTv": false
+      }
+    ]
+  },
+  "FL": {
+    "media": [
+      {
+        "id": 1405,
+        "isTv": true
+      },
+      {
+        "id": 9737,
+        "isTv": false
+      },
+      {
+        "id": 584,
+        "isTv": false
+      }
+    ]
+  },
+  "GA": {
+    "media": [
+      {
+        "id":770,
+        "isTv": false
+      },
+      {
+        "id": 10669,
+        "isTv": false
+      }
+    ]
+  },
+  "HI": {
+    "media": [
+      {
+        "id":734,
+        "isTv": false
+      },
+      {
+        "id": 11544,
+        "isTv": false
+      },
+      {
+        "id": 676,
+        "isTv": false
+      }
+    ]
+  },
+  "ID": {
+    "media": [
+      {
+        "id":8193,
+        "isTv": false
+      },
+      {
+        "id": 20862,
+        "isTv": false
+      }
+    ]
+  },
+  "IL": {
+    "media": [
+      {
+        "id": 9377,
+        "isTv": false
+      },
+      {
+        "id": 34307,
+        "isTv": true
+      },
+      {
+        "id": 29478,
+        "isTv": false
+      },
+      {
+        "id": 771,
+        "isTv": false
+      }
+    ]
+  },
+  "IN": {
+    "media": [
+      {
+        "id": 8592,
+        "isTv": true
+      },
+      {
+        "id": 66732,
+        "isTv": true
+      }
+    ]
+  },
+  "IA": {
+    "media": [
+      {
+        "id": 688,
+        "isTv": false
+      },
+      {
+        "id": 52067,
+        "isTv": false
+      }
+    ]
+  },
+  "KS": {
+    "media": [
+      {
+        "id": 7012,
+        "isTv": false
+      },
+      {
+        
+      }
     ]
   }
 }
