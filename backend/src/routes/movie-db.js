@@ -10,7 +10,7 @@ router.get("/get-movie", async (req, res) => {
       return res.status(400).json({ error: "Movie ID is required" });
     }
 
-    const movie = await moviedb.movieInfo(595);
+    const movie = await moviedb.movieInfo({ id });
 
     return res.json(movie);
   } catch (error) {
