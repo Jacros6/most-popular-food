@@ -1,9 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Renderer2,
+  ElementRef,
+} from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 import { STATE_BORDERS } from '../../../assets/state-borders';
 import { FILL_COLORS } from '../../../assets/fill-colors';
 import { PLAYABLE_STATES } from '../../../assets/playable-states';
+import { MediaService, StateMedia } from '../../service/media.service';
 @Component({
   standalone: true,
   imports: [SafeHtmlPipe],
@@ -23,15 +30,39 @@ export class HomeComponent implements OnInit {
   currentlyAway = 0;
   currentRound = 0;
   private correctStates = new Set<string>();
+  hoveredState: string | null = null;
+  mediaList: StateMedia = {};
 
-  ngOnInit() {
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private readonly mediaService: MediaService,
+  ) {}
+
+  async ngOnInit() {
+    this.mediaList = await this.mediaService.loadJson();
+    console.log(this.mediaList);
     fetch('assets/us.svg')
       .then((res) => res.text())
       .then((svg) => {
         this.usMapSvg = svg;
+        this.onStateHover();
       });
-
     this.getNewState();
+  }
+
+  onStateHover() {
+    setTimeout(() => {
+      const paths = this.el.nativeElement.querySelectorAll('path[data-name]');
+      paths.forEach((path: SVGPathElement) => {
+        this.renderer.listen(path, 'mouseover', () => {
+          this.hoveredState = path.getAttribute('data-name');
+        });
+        this.renderer.listen(path, 'mouseout', () => {
+          this.hoveredState = null;
+        });
+      });
+    });
   }
 
   onClick(event: Event) {
@@ -78,7 +109,9 @@ export class HomeComponent implements OnInit {
     const randomIndex = Math.floor(Math.random() * PLAYABLE_STATES.length);
     this.currentState = PLAYABLE_STATES[randomIndex];
     this.currentRound++;
-    const removedElement = PLAYABLE_STATES.splice(randomIndex, 1)[0];
+    PLAYABLE_STATES.splice(randomIndex, 1)[0];
+    //fetch the media id for the current state
+
     console.log(this.currentState, PLAYABLE_STATES);
   }
 

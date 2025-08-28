@@ -5,9 +5,9 @@ const moviedb = new MovieDb(process.env.TMDB_API_KEY);
 
 router.get("/get-media", async (req, res) => {
   try {
-    const { id, isTv } = req.body;
+    const { id, isTv } = req.params;
     if (!id) {
-      return res.status(400).json({ error: "Movie ID is required" });
+      return res.status(400).json({ error: "Media ID is required" });
     }
     if (typeof isTv !== "boolean") {
       return res.status(400).json({ error: "isTV must be a boolean" });
