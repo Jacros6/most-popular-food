@@ -74,7 +74,7 @@
         "isTv": false
       },
       {
-        "id":1447,
+        "id": 1447,
         "isTv": true
       }
     ]
@@ -86,8 +86,8 @@
         "isTv": false
       },
       {
-       "id": 800359,
-       "isTv": false 
+        "id": 800359,
+        "isTv": false
       },
       {
         "id": 2190,
@@ -134,7 +134,7 @@
   "GA": {
     "media": [
       {
-        "id":770,
+        "id": 770,
         "isTv": false
       },
       {
@@ -146,7 +146,7 @@
   "HI": {
     "media": [
       {
-        "id":734,
+        "id": 734,
         "isTv": false
       },
       {
@@ -162,7 +162,7 @@
   "ID": {
     "media": [
       {
-        "id":8193,
+        "id": 8193,
         "isTv": false
       },
       {
@@ -220,9 +220,342 @@
       {
         "id": 7012,
         "isTv": false
+      }
+    ]
+  },
+  "KY": {
+    "media": [
+      {
+        "id": 1436,
+        "isTv": true
+      }
+    ]
+  },
+  "LA": {
+    "media": [
+      {
+        "id": 702,
+        "isTv": false
       },
       {
-        
+        "id": 10198,
+        "isTv": false
+      }
+    ]
+  },
+  "ME": {
+    "media": [
+      {
+        "id": 15171,
+        "isTv": false
+      }
+    ]
+  },
+  "MD": {
+    "media": [
+      {
+        "id": 1438,
+        "isTv": true
+      }
+    ]
+  },
+  "MA": {
+    "media": [
+      {
+        "id": 1422,
+        "isTv": false
+      },
+      {
+        "id": 345887,
+        "isTv": false
+      }
+    ]
+  },
+  "MI": {
+    "media": [
+      {
+        "id": 65,
+        "isTv": false
+      },
+      {
+        "id": 5548,
+        "isTv": false
+      }
+    ]
+  },
+  "MN": {
+    "media": [
+      {
+        "id": 10414,
+        "isTv": false
+      }
+    ]
+  },
+  "MS": {
+    "media": [
+      {
+        "id": 50014,
+        "isTv": false
+      }
+    ]
+  },
+  "MO": {
+    "media": [
+      {
+        "id": 69740,
+        "isTv": true
+      }
+    ]
+  },
+  "MT": {
+    "media": [
+      {
+        "id": 73586,
+        "isTv": true
+      }
+    ]
+  },
+  "NE": {
+    "media": [
+      {
+        "id": 2755,
+        "isTv": false
+      }
+    ]
+  },
+  "NV": {
+    "media": [
+      {
+        "id": 524,
+        "isTv": false
+      },
+      {
+        "id": 161,
+        "isTv": false
+      }
+    ]
+  },
+  "NH": {
+    "media": [
+      {
+        "id": 8844,
+        "isTv": false
+      }
+    ]
+  },
+  "NJ": {
+    "media": [
+      {
+        "id": 1398,
+        "isTv": true
+      },
+      {
+        "id": 1621,
+        "isTv": false
+      }
+    ]
+  },
+  "NM": {
+    "media": [
+      {
+        "id": 1396,
+        "isTv": true
+      },
+      {
+        "id": 60059,
+        "isTv": true
+      }
+    ]
+  },
+  "NY": {
+    "media": [
+      {
+        "id": 1400,
+        "isTv": true
+      },
+      {
+        "id": 37680,
+        "isTv": true
+      },
+      {
+        "id": 103,
+        "isTv": false
+      },
+      {
+        "id": 238,
+        "isTv": false
+      }
+    ]
+  },
+  "NC": {
+    "media": [
+      {
+        "id": 269,
+        "isTv": false
+      }
+    ]
+  },
+  "ND": {
+    "media": [
+      {
+        "id": 250666,
+        "isTv": false
+      }
+    ]
+  },
+  "OH": {
+    "media": [
+      {
+        "id": 9942,
+        "isTv": false
+      },
+      {
+        "id": 377,
+        "isTv": false
+      }
+    ]
+  },
+  "OK": {
+    "media": [
+      {
+        "id": 664,
+        "isTv": false
+      }
+    ]
+  },
+  "OR": {
+    "media": [
+      {
+        "id": 510,
+        "isTv": false
+      },
+      {
+        "id": 9340,
+        "isTv": false
+      }
+    ]
+  },
+  "PA": {
+    "media": [
+      {
+        "id": 2316,
+        "isTv": true
+      },
+      {
+        "id": 1366,
+        "isTv": false
+      },
+      {
+        "id": 10331,
+        "isTv": false
+      }
+    ]
+  },
+  "RI": {
+    "media": [
+      {
+        "id": 1434,
+        "isTv": true
+      }
+    ]
+  },
+  "SC": {
+    "media": [
+      {
+        "id": 11036,
+        "isTv": false
+      },
+      {
+        "id": 12560,
+        "isTv": false
+      }
+    ]
+  },
+  "SD": {
+    "media": [
+      {
+        "id": 1406,
+        "isTv": true
+      }
+    ]
+  },
+  "TN": {
+    "media": [
+      {
+        "id": 69,
+        "isTv": false
+      }
+    ]
+  },
+  "TX": {
+    "media": [
+      {
+        "id": 6977,
+        "isTv": false
+      },
+      {
+        "id": 4278,
+        "isTv": true
+      }
+    ]
+  },
+  "UT": {
+    "media": [
+      {
+        "id": 44115,
+        "isTv": false
+      }
+    ]
+  },
+  "VT": {
+    "media": [
+      {
+        "id": 207,
+        "isTv": false
+      }
+    ]
+  },
+  "VA": {
+    "media": [
+      {
+        "id": 274,
+        "isTv": false
+      }
+    ]
+  },
+  "WA": {
+    "media": [
+      {
+        "id": 1920,
+        "isTv": true
+      },
+      {
+        "id": 3452,
+        "isTv": true
+      }
+    ]
+  },
+  "WV": {
+    "media": [
+      {
+        "id": 13466,
+        "isTv": false
+      }
+    ]
+  },
+  "WI": {
+    "media": [
+      {
+        "id": 52,
+        "isTv": true
+      }
+    ]
+  },
+  "WY": {
+    "media": [
+      {
+        "id": 642,
+        "isTv": false
       }
     ]
   }
