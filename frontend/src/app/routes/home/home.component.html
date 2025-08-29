@@ -34,16 +34,17 @@
       Submit
     </button>
   </div>
+  <div class="info-panel">
+    <h2>State is {{ currentlyAway }} Away</h2>
+    <div class="hovered-state">
+      @if (hoveredState) {
+        {{ hoveredState }}
+      }
+    </div>
+  </div>
   <div
     [innerHTML]="usMapSvg | safeHtml"
     (click)="onClick($event)"
     class="states"
   ></div>
-
-  <div class="info-panel">
-    <h2>State is {{ currentlyAway }} Away</h2>
-    <div *ngIf="hoveredState" class="hovered-state">
-      {{ hoveredState }}
-    </div>
-  </div>
 </div>
