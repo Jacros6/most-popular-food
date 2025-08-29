@@ -11,7 +11,7 @@
     </div>
   }
   <div class="input-container">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
       <input
         type="text"
         placeholder="Guess a state"
@@ -30,7 +30,7 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="submitGuess()">
+    <button mat-flat-button color="primary" (click)="submitGuess()">
       Submit
     </button>
   </div>
