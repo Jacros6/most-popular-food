@@ -5,16 +5,31 @@ import {
   Renderer2,
   ElementRef,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 import { STATE_BORDERS } from '../../../assets/state-borders';
 import { FILL_COLORS } from '../../../assets/fill-colors';
 import { PLAYABLE_STATES } from '../../../assets/playable-states';
+import { ALL_STATES } from '../../../assets/all-states';
 import { MediaService, StateMedia } from '../../service/media.service';
-import { firstValueFrom } from 'rxjs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 @Component({
   standalone: true,
-  imports: [SafeHtmlPipe],
+  imports: [
+    CommonModule,
+    SafeHtmlPipe,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+  ],
   selector: 'app-home',
   templateUrl: 'home.component.html',
   styleUrl: 'home.component.scss',
@@ -26,6 +41,7 @@ export class HomeComponent implements OnInit {
   readonly STATE_BORDERS = STATE_BORDERS;
   readonly FILL_COLORS = FILL_COLORS;
   readonly PLAYABLE_STATES = PLAYABLE_STATES;
+  readonly ALL_STATES = ALL_STATES;
 
   private currentState = '';
   currentlyAway = 0;
@@ -34,12 +50,19 @@ export class HomeComponent implements OnInit {
   hoveredState: string | null = null;
   mediaList: StateMedia = {};
   currentMedia: any = null;
+  stateCtrl = new FormControl('');
+  filteredStates!: Observable<string[]>;
 
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
     private readonly mediaService: MediaService,
-  ) {}
+  ) {
+    this.filteredStates = this.stateCtrl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || '')),
+    );
+  }
 
   async ngOnInit() {
     this.mediaList = await this.mediaService.loadJson();
@@ -67,12 +90,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.ALL_STATES.filter((state) =>
+      state.toLowerCase().includes(filterValue),
+    );
+  }
+
   onClick(event: Event) {
     const target = event.target as HTMLElement;
-
     if (target.tagName.toLowerCase() !== 'path') return;
-
     const stateId = target.dataset['id'];
+
     if (!stateId) return;
 
     if (this.correctStates.has(stateId)) return;
@@ -104,10 +133,8 @@ export class HomeComponent implements OnInit {
   private getNewState() {
     if (PLAYABLE_STATES.length === 0) {
       //There should be no more playable states
-
       return;
     }
-
     const randomIndex = Math.floor(Math.random() * PLAYABLE_STATES.length);
     this.currentState = PLAYABLE_STATES[randomIndex];
     this.currentRound++;
@@ -115,6 +142,14 @@ export class HomeComponent implements OnInit {
     //fetch the media id for the current state
     this.getRandomMedia();
     console.log(this.currentState, PLAYABLE_STATES);
+  }
+
+  submitGuess() {
+    const guess = this.stateCtrl.value;
+    if (guess) {
+      console.log('User guessed:', guess);
+      // 🔥 Pass guess to your game engine
+    }
   }
 
   private async getRandomMedia() {

@@ -1,16 +1,49 @@
-<div style="min-height: 100vh">
-  <h2>Round: {{ currentRound }}</h2>
+<div class="game-container">
+  @if (currentMedia) {
+    <div class="movie-container">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path"
+        [alt]="currentMedia.title"
+      />
+      <a>
+        {{ currentMedia.overview }}
+      </a>
+    </div>
+  }
+  <div class="input-container">
+    <mat-form-field appearance="outline">
+      <input
+        type="text"
+        placeholder="Guess a state"
+        matInput
+        [formControl]="stateCtrl"
+        [matAutocomplete]="auto"
+        (keydown.enter)="submitGuess()"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let state of filteredStates | async"
+          [value]="state"
+        >
+          {{ state }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="submitGuess()">
+      Submit
+    </button>
+  </div>
   <div
     [innerHTML]="usMapSvg | safeHtml"
     (click)="onClick($event)"
     class="states"
   ></div>
-  @if(currentMedia){
-    
-  }
-  <h2>State is {{ currentlyAway }} Away</h2>
-  @if (hoveredState) {
-    {{ hoveredState }}
-  }
-</div>
 
+  <div class="info-panel">
+    <h2>State is {{ currentlyAway }} Away</h2>
+    <div *ngIf="hoveredState" class="hovered-state">
+      {{ hoveredState }}
+    </div>
+  </div>
+</div>
