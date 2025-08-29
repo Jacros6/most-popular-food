@@ -11,6 +11,7 @@ import { STATE_BORDERS } from '../../../assets/state-borders';
 import { FILL_COLORS } from '../../../assets/fill-colors';
 import { PLAYABLE_STATES } from '../../../assets/playable-states';
 import { MediaService, StateMedia } from '../../service/media.service';
+import { firstValueFrom } from 'rxjs';
 @Component({
   standalone: true,
   imports: [SafeHtmlPipe],
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   private correctStates = new Set<string>();
   hoveredState: string | null = null;
   mediaList: StateMedia = {};
+  currentMedia: any = null;
 
   constructor(
     private el: ElementRef,
@@ -111,8 +113,19 @@ export class HomeComponent implements OnInit {
     this.currentRound++;
     PLAYABLE_STATES.splice(randomIndex, 1)[0];
     //fetch the media id for the current state
-
+    this.getRandomMedia();
     console.log(this.currentState, PLAYABLE_STATES);
+  }
+
+  private async getRandomMedia() {
+    const stateMediaList = this.mediaList[this.currentState].media;
+    const randomIndex = Math.floor(Math.random() * stateMediaList.length);
+    const mediaId = stateMediaList[randomIndex].id;
+    const isTv = stateMediaList[randomIndex].isTv;
+    console.log(mediaId, isTv);
+    const res = await this.mediaService.getMediaPiece(mediaId, isTv);
+    this.currentMedia = res;
+    console.log(this.currentMedia);
   }
 
   private setFill(element: HTMLElement, color: string) {

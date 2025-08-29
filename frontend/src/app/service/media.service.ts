@@ -24,10 +24,12 @@ export class MediaService {
     return await firstValueFrom(this.http.get<StateMedia>(this.jsonUrl));
   }
 
-  getMediaPiece(id: number | string, isTv: boolean) {
+  async getMediaPiece(id: number | string, isTv: boolean) {
     const params = new HttpParams()
       .set('id', id.toString())
       .set('isTv', isTv.toString());
-    return this.http.get(`${this.apiUrl}/api/get-media`, { params });
+    return await firstValueFrom(
+      this.http.get(`${this.apiUrl}/api/get-media`, { params }),
+    );
   }
 }

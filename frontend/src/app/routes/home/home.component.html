@@ -5,9 +5,12 @@
     (click)="onClick($event)"
     class="states"
   ></div>
-
+  @if(currentMedia){
+    
+  }
   <h2>State is {{ currentlyAway }} Away</h2>
   @if (hoveredState) {
     {{ hoveredState }}
   }
 </div>
+

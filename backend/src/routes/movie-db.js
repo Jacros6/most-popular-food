@@ -5,7 +5,8 @@ const moviedb = new MovieDb(process.env.TMDB_API_KEY);
 
 router.get("/get-media", async (req, res) => {
   try {
-    const { id, isTv } = req.params;
+    const id = req.query.id;
+    const isTv = req.query.isTv === "true";
     if (!id) {
       return res.status(400).json({ error: "Media ID is required" });
     }
@@ -14,6 +15,7 @@ router.get("/get-media", async (req, res) => {
     }
 
     let data;
+    console.log(id, isTv);
 
     if (isTv) {
       data = await moviedb.tvInfo({ id });

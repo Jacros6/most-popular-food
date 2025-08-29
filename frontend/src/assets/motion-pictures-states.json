@@ -147,7 +147,7 @@
     "media": [
       {
         "id": 734,
-        "isTv": false
+        "isTv": true
       },
       {
         "id": 11544,
@@ -391,7 +391,7 @@
     "media": [
       {
         "id": 269,
-        "isTv": false
+        "isTv": true
       }
     ]
   },
