@@ -1,3 +1,18 @@
+.movie-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 750px;
+  gap: 2em;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
 .states path {
   transition: filter 0.3s ease;
 }
@@ -5,4 +20,79 @@
 .states path[fill="#f9f9f9"]:hover {
   filter: brightness(0.7);
   cursor: pointer;
+}
+
+/* Container for the whole component */
+.game-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  gap: 2rem;
+}
+
+/* Round header */
+.game-container h2:first-of-type {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+/* Media poster */
+.media-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.media-card img {
+  width: 200px;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-top: 0.5rem;
+}
+
+/* Autocomplete input field */
+mat-form-field {
+  width: 300px;
+}
+
+button {
+  margin-top: 0.5rem;
+}
+
+/* Map container */
+.states {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 2rem;
+}
+
+/* Your existing SVG hover */
+.states path {
+  transition: filter 0.3s ease;
+}
+
+.states path[fill="#f9f9f9"]:hover {
+  filter: brightness(0.7);
+  cursor: pointer;
+}
+
+/* Distance & hovered state info */
+.info-panel {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4a5568;
+}
+
+.info-panel .hovered-state {
+  margin-top: 0.3rem;
+  font-weight: 600;
+  color: #2b6cb0;
 }

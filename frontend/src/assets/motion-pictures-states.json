@@ -1,102 +1,562 @@
 {
   "AL": {
-    "film": [
+    "media": [
       {
-        "title": "To Kill a Mockingbird",
-        "year": 1962,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 595,
+        "isTv": false
       },
       {
-        "title": "Hart of Dixie",
-        "year": 2011,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 39279,
+        "isTv": true
       },
       {
-        "title": "Big Fish",
-        "year": 2003,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 1633,
+        "isTv": false
       }
     ]
   },
   "AK": {
-    "film": [
+    "media": [
       {
-        "title": "Northern Exposure",
-        "year": 1990,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 5915,
+        "isTv": false
       },
       {
-        "title": "Into the Wild",
-        "year": 2007,
-        "coverImage": "",
-        "supportingImages": [""],
-        "description": ""
+        "id": 75174,
+        "isTv": false
       },
       {
-        "title": "The Grey", 
-        "year": 2011,
-        "coverImage":"",
-        "supportingImages":[""],
-        "description": ""
+        "id": 18240,
+        "isTv": false
       }
     ]
   },
   "AZ": {
-    "film": [
-        {
-            "title": "Bill & Ted`s Excellent Adventure",
-            "year": 1989,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description" : ""
-        },
-        {
-            "title": "Breaking Bad",
-            "year": 2008, 
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        },
-        {
-            "title": "Tombstone",
-            "year": 1993,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        }
+    "media": [
+      {
+        "id": 11969,
+        "isTv": false
+      },
+      {
+        "id": 5176,
+        "isTv": false
+      },
+      {
+        "id": 15613,
+        "isTv": false
+      }
     ]
   },
   "AR": {
-    "film": [
-        {
-            "title": "True Detective Season 3",
-            "year": 2019,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        },
-        {
-            "title": "Mud",
-            "year": 2012,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        },
-        {
-            "title": "Sling Blade",
-            "year": 1996,
-            "coverImage": "",
-            "supportingImages": [""],
-            "description": ""
-        }
+    "media": [
+      {
+        "id": 12498,
+        "isTv": false
+      },
+      {
+        "id": 103731,
+        "isTv": false
+      },
+      {
+        "id": 44264,
+        "isTv": false
+      }
+    ]
+  },
+  "CA": {
+    "media": [
+      {
+        "id": 313369,
+        "isTv": false
+      },
+      {
+        "id": 115,
+        "isTv": false
+      },
+      {
+        "id": 1447,
+        "isTv": true
+      }
+    ]
+  },
+  "CO": {
+    "media": [
+      {
+        "id": 694,
+        "isTv": false
+      },
+      {
+        "id": 800359,
+        "isTv": false
+      },
+      {
+        "id": 2190,
+        "isTv": true
+      }
+    ]
+  },
+  "CT": {
+    "media": [
+      {
+        "id": 4148,
+        "isTv": false
+      }
+    ]
+  },
+  "DE": {
+    "media": [
+      {
+        "id": 188166,
+        "isTv": false
+      },
+      {
+        "id": 13531,
+        "isTv": false
+      }
+    ]
+  },
+  "FL": {
+    "media": [
+      {
+        "id": 1405,
+        "isTv": true
+      },
+      {
+        "id": 9737,
+        "isTv": false
+      },
+      {
+        "id": 584,
+        "isTv": false
+      }
+    ]
+  },
+  "GA": {
+    "media": [
+      {
+        "id": 770,
+        "isTv": false
+      },
+      {
+        "id": 10669,
+        "isTv": false
+      }
+    ]
+  },
+  "HI": {
+    "media": [
+      {
+        "id": 734,
+        "isTv": true
+      },
+      {
+        "id": 11544,
+        "isTv": false
+      },
+      {
+        "id": 676,
+        "isTv": false
+      }
+    ]
+  },
+  "ID": {
+    "media": [
+      {
+        "id": 8193,
+        "isTv": false
+      },
+      {
+        "id": 20862,
+        "isTv": false
+      }
+    ]
+  },
+  "IL": {
+    "media": [
+      {
+        "id": 9377,
+        "isTv": false
+      },
+      {
+        "id": 34307,
+        "isTv": true
+      },
+      {
+        "id": 29478,
+        "isTv": false
+      },
+      {
+        "id": 771,
+        "isTv": false
+      }
+    ]
+  },
+  "IN": {
+    "media": [
+      {
+        "id": 8592,
+        "isTv": true
+      },
+      {
+        "id": 66732,
+        "isTv": true
+      }
+    ]
+  },
+  "IA": {
+    "media": [
+      {
+        "id": 688,
+        "isTv": false
+      },
+      {
+        "id": 52067,
+        "isTv": false
+      }
+    ]
+  },
+  "KS": {
+    "media": [
+      {
+        "id": 7012,
+        "isTv": false
+      }
+    ]
+  },
+  "KY": {
+    "media": [
+      {
+        "id": 1436,
+        "isTv": true
+      }
+    ]
+  },
+  "LA": {
+    "media": [
+      {
+        "id": 702,
+        "isTv": false
+      },
+      {
+        "id": 10198,
+        "isTv": false
+      }
+    ]
+  },
+  "ME": {
+    "media": [
+      {
+        "id": 15171,
+        "isTv": false
+      }
+    ]
+  },
+  "MD": {
+    "media": [
+      {
+        "id": 1438,
+        "isTv": true
+      }
+    ]
+  },
+  "MA": {
+    "media": [
+      {
+        "id": 1422,
+        "isTv": false
+      },
+      {
+        "id": 345887,
+        "isTv": false
+      }
+    ]
+  },
+  "MI": {
+    "media": [
+      {
+        "id": 65,
+        "isTv": false
+      },
+      {
+        "id": 5548,
+        "isTv": false
+      }
+    ]
+  },
+  "MN": {
+    "media": [
+      {
+        "id": 10414,
+        "isTv": false
+      }
+    ]
+  },
+  "MS": {
+    "media": [
+      {
+        "id": 50014,
+        "isTv": false
+      }
+    ]
+  },
+  "MO": {
+    "media": [
+      {
+        "id": 69740,
+        "isTv": true
+      }
+    ]
+  },
+  "MT": {
+    "media": [
+      {
+        "id": 73586,
+        "isTv": true
+      }
+    ]
+  },
+  "NE": {
+    "media": [
+      {
+        "id": 2755,
+        "isTv": false
+      }
+    ]
+  },
+  "NV": {
+    "media": [
+      {
+        "id": 524,
+        "isTv": false
+      },
+      {
+        "id": 161,
+        "isTv": false
+      }
+    ]
+  },
+  "NH": {
+    "media": [
+      {
+        "id": 8844,
+        "isTv": false
+      }
+    ]
+  },
+  "NJ": {
+    "media": [
+      {
+        "id": 1398,
+        "isTv": true
+      },
+      {
+        "id": 1621,
+        "isTv": false
+      }
+    ]
+  },
+  "NM": {
+    "media": [
+      {
+        "id": 1396,
+        "isTv": true
+      },
+      {
+        "id": 60059,
+        "isTv": true
+      }
+    ]
+  },
+  "NY": {
+    "media": [
+      {
+        "id": 1400,
+        "isTv": true
+      },
+      {
+        "id": 37680,
+        "isTv": true
+      },
+      {
+        "id": 103,
+        "isTv": false
+      },
+      {
+        "id": 238,
+        "isTv": false
+      }
+    ]
+  },
+  "NC": {
+    "media": [
+      {
+        "id": 269,
+        "isTv": true
+      }
+    ]
+  },
+  "ND": {
+    "media": [
+      {
+        "id": 250666,
+        "isTv": false
+      }
+    ]
+  },
+  "OH": {
+    "media": [
+      {
+        "id": 9942,
+        "isTv": false
+      },
+      {
+        "id": 377,
+        "isTv": false
+      }
+    ]
+  },
+  "OK": {
+    "media": [
+      {
+        "id": 664,
+        "isTv": false
+      }
+    ]
+  },
+  "OR": {
+    "media": [
+      {
+        "id": 510,
+        "isTv": false
+      },
+      {
+        "id": 9340,
+        "isTv": false
+      }
+    ]
+  },
+  "PA": {
+    "media": [
+      {
+        "id": 2316,
+        "isTv": true
+      },
+      {
+        "id": 1366,
+        "isTv": false
+      },
+      {
+        "id": 10331,
+        "isTv": false
+      }
+    ]
+  },
+  "RI": {
+    "media": [
+      {
+        "id": 1434,
+        "isTv": true
+      }
+    ]
+  },
+  "SC": {
+    "media": [
+      {
+        "id": 11036,
+        "isTv": false
+      },
+      {
+        "id": 12560,
+        "isTv": false
+      }
+    ]
+  },
+  "SD": {
+    "media": [
+      {
+        "id": 1406,
+        "isTv": true
+      }
+    ]
+  },
+  "TN": {
+    "media": [
+      {
+        "id": 69,
+        "isTv": false
+      }
+    ]
+  },
+  "TX": {
+    "media": [
+      {
+        "id": 6977,
+        "isTv": false
+      },
+      {
+        "id": 4278,
+        "isTv": true
+      }
+    ]
+  },
+  "UT": {
+    "media": [
+      {
+        "id": 44115,
+        "isTv": false
+      }
+    ]
+  },
+  "VT": {
+    "media": [
+      {
+        "id": 207,
+        "isTv": false
+      }
+    ]
+  },
+  "VA": {
+    "media": [
+      {
+        "id": 274,
+        "isTv": false
+      }
+    ]
+  },
+  "WA": {
+    "media": [
+      {
+        "id": 1920,
+        "isTv": true
+      },
+      {
+        "id": 3452,
+        "isTv": true
+      }
+    ]
+  },
+  "WV": {
+    "media": [
+      {
+        "id": 13466,
+        "isTv": false
+      }
+    ]
+  },
+  "WI": {
+    "media": [
+      {
+        "id": 52,
+        "isTv": true
+      }
+    ]
+  },
+  "WY": {
+    "media": [
+      {
+        "id": 642,
+        "isTv": false
+      }
     ]
   }
 }
