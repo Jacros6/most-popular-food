@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
   currentMedia: any = null;
   stateCtrl = new FormControl('');
   filteredStates!: Observable<string[]>;
+  private playedStatesInRound = new Set<string>();
 
   score = 0;
   attemptsThisRound = 0;
@@ -95,9 +96,7 @@ export class HomeComponent implements OnInit {
     this.currentRound = 0;
     this.correctStates.clear();
     this.attemptsThisRound = 0;
-
     this.PLAYABLE_STATES = [...PLAYABLE_STATES];
-    console.log('restartGame called', this.PLAYABLE_STATES);
     this.getNewState();
     this.resetColors();
   }
@@ -130,13 +129,15 @@ export class HomeComponent implements OnInit {
 
     if (!stateId) return;
 
+    if(this.playedStatesInRound.has(stateId)) return;
+
     if (this.correctStates.has(stateId)) return;
 
     if (stateId === this.currentState) {
       this.nextRound(target, stateId);
       return;
     }
-
+    this.playedStatesInRound.add(stateId)
     this.attemptsThisRound++;
     this.currentlyAway = this.bfs(stateId);
     const fill = this.getFillColor(this.currentlyAway);
@@ -171,6 +172,8 @@ export class HomeComponent implements OnInit {
     if (!guess) return;
     if (!this.STATE_LOOKUP[guess]) return;
     const abbr = this.STATE_LOOKUP[guess];
+    
+    if(this.playedStatesInRound.has(abbr)) return;
     const target = document.querySelector(`[data-id='${abbr}']`) as HTMLElement;
     if (abbr === this.currentState) {
       this.nextRound(target, abbr);
@@ -195,6 +198,7 @@ export class HomeComponent implements OnInit {
     this.resetColors();
     this.getNewState();
     this.stateCtrl.reset();
+    this.playedStatesInRound.clear();
     const input = document.querySelector<HTMLInputElement>(
       'input[formControlName="stateCtrl"]',
     );
