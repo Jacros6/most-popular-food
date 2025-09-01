@@ -1,50 +1,61 @@
 <div class="game-container">
-  @if (currentMedia) {
-    <div class="movie-container">
-      <img
-        [src]="'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path"
-        [alt]="currentMedia.title"
-      />
-      <a>
-        {{ currentMedia.overview }}
-      </a>
-    </div>
-  }
-  <div class="input-container">
-    <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <input
-        type="text"
-        placeholder="Guess a state"
-        matInput
-        [formControl]="stateCtrl"
-        [matAutocomplete]="auto"
-        (keydown.enter)="submitGuess()"
-      />
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-          *ngFor="let state of filteredStates | async"
-          [value]="state"
-        >
-          {{ state }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+  @if (!gameOver) {
+    @if (currentMedia) {
+      <div class="movie-container">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path"
+          [alt]="currentMedia.title"
+        />
+        <a>
+          {{ currentMedia.overview }}
+        </a>
+      </div>
+    }
+    <div class="input-container">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <input
+          type="text"
+          placeholder="Guess a state"
+          matInput
+          [formControl]="stateCtrl"
+          [matAutocomplete]="auto"
+          (keydown.enter)="submitGuess()"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let state of filteredStates | async"
+            [value]="state"
+          >
+            {{ state }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-    <button mat-flat-button color="primary" (click)="submitGuess()">
-      Submit
-    </button>
-  </div>
-  <div class="info-panel">
-    <h2>State is {{ currentlyAway }} Away</h2>
-    <div class="hovered-state">
-      @if (hoveredState) {
-        {{ hoveredState }}
-      }
+      <button mat-flat-button color="primary" (click)="submitGuess()">
+        Submit
+      </button>
     </div>
-  </div>
-  <div
-    [innerHTML]="usMapSvg | safeHtml"
-    (click)="onClick($event)"
-    class="states"
-  ></div>
+    <div class="info-panel">
+      <div class="currently-away">
+        @if (currentlyAway != null) {
+          <h2>State is {{ currentlyAway }} Away</h2>
+        }
+      </div>
+      <div class="hovered-state">
+        @if (hoveredState) {
+          {{ hoveredState }}
+        }
+      </div>
+    </div>
+    <div
+      [innerHTML]="usMapSvg | safeHtml"
+      (click)="onClick($event)"
+      class="states"
+    ></div>
+    <h3>Score: {{ score }}</h3>
+  } @else {
+    <h1>Congratulations! You have guessed all the states!</h1>
+    <p>Your final score is: {{ score }}</p>
+    <button (click)="restartGame()">Play Again</button>
+  }
 </div>

@@ -40,11 +40,19 @@ export class HomeComponent implements OnInit {
 
   readonly STATE_BORDERS = STATE_BORDERS;
   readonly FILL_COLORS = FILL_COLORS;
-  readonly PLAYABLE_STATES = PLAYABLE_STATES;
+  PLAYABLE_STATES = [...PLAYABLE_STATES];
   readonly ALL_STATES = ALL_STATES;
 
+  readonly STATE_LOOKUP: Record<string, string> = this.ALL_STATES.reduce(
+    (state, acc, i) => {
+      state[acc] = this.PLAYABLE_STATES[i];
+      return state;
+    },
+    {} as Record<string, string>,
+  );
+
   private currentState = '';
-  currentlyAway = 0;
+  currentlyAway: number | null = null;
   currentRound = 0;
   private correctStates = new Set<string>();
   hoveredState: string | null = null;
@@ -52,6 +60,11 @@ export class HomeComponent implements OnInit {
   currentMedia: any = null;
   stateCtrl = new FormControl('');
   filteredStates!: Observable<string[]>;
+
+  score = 0;
+  attemptsThisRound = 0;
+
+  gameOver = false;
 
   constructor(
     private el: ElementRef,
@@ -74,6 +87,19 @@ export class HomeComponent implements OnInit {
         this.onStateHover();
       });
     this.getNewState();
+  }
+
+  restartGame() {
+    this.gameOver = false;
+    this.score = 0;
+    this.currentRound = 0;
+    this.correctStates.clear();
+    this.attemptsThisRound = 0;
+
+    this.PLAYABLE_STATES = [...PLAYABLE_STATES];
+    console.log('restartGame called', this.PLAYABLE_STATES);
+    this.getNewState();
+    this.resetColors();
   }
 
   onStateHover() {
@@ -107,13 +133,11 @@ export class HomeComponent implements OnInit {
     if (this.correctStates.has(stateId)) return;
 
     if (stateId === this.currentState) {
-      this.setFill(target, this.FILL_COLORS['current']);
-      this.correctStates.add(stateId);
-      this.resetColors();
-      this.getNewState();
+      this.nextRound(target, stateId);
       return;
     }
 
+    this.attemptsThisRound++;
     this.currentlyAway = this.bfs(stateId);
     const fill = this.getFillColor(this.currentlyAway);
     this.setFill(target, fill);
@@ -125,31 +149,57 @@ export class HomeComponent implements OnInit {
       if (id && this.correctStates.has(id)) {
         this.setFill(path, this.FILL_COLORS['current']);
       } else {
-        this.setFill(path, '#f9f9f9'); // base/neutral
+        this.setFill(path, '#f9f9f9');
       }
     });
   }
 
   private getNewState() {
-    if (PLAYABLE_STATES.length === 0) {
-      //There should be no more playable states
+    if (this.PLAYABLE_STATES.length === 0) {
+      this.gameOver = true;
       return;
     }
-    const randomIndex = Math.floor(Math.random() * PLAYABLE_STATES.length);
-    this.currentState = PLAYABLE_STATES[randomIndex];
+    const randomIndex = Math.floor(Math.random() * this.PLAYABLE_STATES.length);
+    this.currentState = this.PLAYABLE_STATES[randomIndex];
     this.currentRound++;
-    PLAYABLE_STATES.splice(randomIndex, 1)[0];
-    //fetch the media id for the current state
+    this.PLAYABLE_STATES.splice(randomIndex, 1)[0];
     this.getRandomMedia();
-    console.log(this.currentState, PLAYABLE_STATES);
   }
 
   submitGuess() {
     const guess = this.stateCtrl.value;
-    if (guess) {
-      console.log('User guessed:', guess);
-      // 🔥 Pass guess to your game engine
+    if (!guess) return;
+    if (!this.STATE_LOOKUP[guess]) return;
+    const abbr = this.STATE_LOOKUP[guess];
+    const target = document.querySelector(`[data-id='${abbr}']`) as HTMLElement;
+    if (abbr === this.currentState) {
+      this.nextRound(target, abbr);
+      return;
     }
+
+    this.currentlyAway = this.bfs(abbr);
+    const fill = this.getFillColor(this.currentlyAway);
+    this.setFill(target, fill);
+    this.stateCtrl.reset();
+    this.attemptsThisRound++;
+    const input = document.querySelector<HTMLInputElement>(
+      'input[formControlName="stateCtrl"]',
+    );
+    input?.blur();
+  }
+
+  private nextRound(target: HTMLElement, abbr: string) {
+    this.addPointsForRound();
+    this.setFill(target, this.FILL_COLORS['current']);
+    this.correctStates.add(abbr);
+    this.resetColors();
+    this.getNewState();
+    this.stateCtrl.reset();
+    const input = document.querySelector<HTMLInputElement>(
+      'input[formControlName="stateCtrl"]',
+    );
+    input?.blur();
+    this.currentlyAway = null;
   }
 
   private async getRandomMedia() {
@@ -169,6 +219,12 @@ export class HomeComponent implements OnInit {
 
   private getFillColor(distance: number): string {
     return this.FILL_COLORS[distance] ?? this.FILL_COLORS['default'];
+  }
+
+  private addPointsForRound() {
+    const points = Math.max(10 - this.attemptsThisRound * 2, 2);
+    this.score += points;
+    this.attemptsThisRound = 0;
   }
 
   private bfs(clickedState: string | undefined): number {
