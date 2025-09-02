@@ -1,96 +1,88 @@
-.movie-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 750px;
-  gap: 2em;
-}
-
-.input-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 1em;
-}
-
-.states path {
-  transition: filter 0.3s ease;
-}
-
-.states path[fill="#f9f9f9"]:hover {
-  filter: brightness(0.7);
-  cursor: pointer;
+.currently-away {
+  min-height: 68px;
 }
 
 .game-container {
+  padding: 2em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  gap: 2rem;
+  justify-content: center;
 }
 
-.game-container h2:first-of-type {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2d3748;
-}
-
-.media-card {
+.game-separator {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+  justify-content: center;
+  gap: 1em;
 
-.media-card img {
-  width: 200px;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  margin-top: 0.5rem;
-}
+  .score-card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 15%;
+    padding: 1em;
+    gap: 0.5em;
+    overflow: hidden;
 
-mat-form-field {
-  width: 300px;
-}
+    .score {
+      flex: 0 0 10%;
+      justify-content: center;
+      align-items: center;
+    }
 
-button {
-  margin-top: 0.5rem;
+    .country-list {
+      max-height: 650px;
+      overflow-y: auto;
+      min-height: 650px;
+    }
+  }
+  .country-card {
+    flex: 0.7;
+    display: flex;
+    gap: 0.5em;
+    padding: 1em;
+    .country {
+      flex: 0.9;
+      justify-content: center;
+      align-items: center;
+    }
+    .steps-input-card {
+      flex: 0.1;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 2em;
+      padding: 1em;
+      .input-card {
+        flex-direction: row;
+        flex: 0.5;
+        height: 100%;
+        gap: 1em;
+        justify-content: center;
+        align-items: center;
+      }
+      .steps-away-card {
+        flex: 0.5;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  .movie-card {
+    flex: 0.15;
+  }
 }
 
 .states {
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 900px;
-  margin-top: 2rem;
-  transform: translateX(-100px) translateY(-100px);
-}
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
-.states path {
-  transition: filter 0.3s ease;
-}
-
-.states path[fill="#f9f9f9"]:hover {
-  filter: brightness(0.7);
-  cursor: pointer;
-}
-
-.info-panel {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #4a5568;
-}
-
-.info-panel .hovered-state {
-  margin-top: 0.3rem;
-  font-weight: 600;
-  min-height: 24px;
-  color: #2b6cb0;
-}
-
-.currently-away {
-  min-height: 68px;
+  path[fill="#f9f9f9"]:hover {
+    filter: brightness(0.7);
+    cursor: pointer;
+  }
 }

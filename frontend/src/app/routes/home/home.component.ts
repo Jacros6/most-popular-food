@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   standalone: true,
@@ -29,6 +31,8 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatListModule,
   ],
   selector: 'app-home',
   templateUrl: 'home.component.html',
@@ -60,7 +64,7 @@ export class HomeComponent implements OnInit {
   currentMedia: any = null;
   stateCtrl = new FormControl('');
   filteredStates!: Observable<string[]>;
-  private playedStatesInRound = new Set<string>();
+  playedStatesInRound = new Set<string>();
 
   score = 0;
   attemptsThisRound = 0;
@@ -76,6 +80,11 @@ export class HomeComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value || '')),
     );
+  }
+
+  get playedStatesArray(): string[] {
+    const arr = Array.from(this.playedStatesInRound).reverse();
+    return arr;
   }
 
   async ngOnInit() {
@@ -129,7 +138,7 @@ export class HomeComponent implements OnInit {
 
     if (!stateId) return;
 
-    if(this.playedStatesInRound.has(stateId)) return;
+    if (this.playedStatesInRound.has(stateId)) return;
 
     if (this.correctStates.has(stateId)) return;
 
@@ -137,7 +146,7 @@ export class HomeComponent implements OnInit {
       this.nextRound(target, stateId);
       return;
     }
-    this.playedStatesInRound.add(stateId)
+    this.playedStatesInRound.add(stateId);
     this.attemptsThisRound++;
     this.currentlyAway = this.bfs(stateId);
     const fill = this.getFillColor(this.currentlyAway);
@@ -172,8 +181,8 @@ export class HomeComponent implements OnInit {
     if (!guess) return;
     if (!this.STATE_LOOKUP[guess]) return;
     const abbr = this.STATE_LOOKUP[guess];
-    
-    if(this.playedStatesInRound.has(abbr)) return;
+
+    if (this.playedStatesInRound.has(abbr)) return;
     const target = document.querySelector(`[data-id='${abbr}']`) as HTMLElement;
     if (abbr === this.currentState) {
       this.nextRound(target, abbr);
@@ -199,6 +208,7 @@ export class HomeComponent implements OnInit {
     this.getNewState();
     this.stateCtrl.reset();
     this.playedStatesInRound.clear();
+
     const input = document.querySelector<HTMLInputElement>(
       'input[formControlName="stateCtrl"]',
     );

@@ -1,58 +1,85 @@
 <div class="game-container">
   @if (!gameOver) {
-    @if (currentMedia) {
-      <div class="movie-container">
-        <img
-          [src]="'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path"
-          [alt]="currentMedia.title"
-        />
-        <a>
-          {{ currentMedia.overview }}
-        </a>
-      </div>
-    }
-    <div class="input-container">
-      <mat-form-field appearance="outline" subscriptSizing="dynamic">
-        <input
-          type="text"
-          placeholder="Guess a state"
-          matInput
-          [formControl]="stateCtrl"
-          [matAutocomplete]="auto"
-          (keydown.enter)="submitGuess()"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option
-            *ngFor="let state of filteredStates | async"
-            [value]="state"
-          >
-            {{ state }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+    <div class="game-separator">
+      <mat-card class="score-card">
+        <mat-card class="score">
+          <h3>Score: {{ score }}</h3>
+        </mat-card>
+        <mat-card class="country-list">
+          <mat-list>
+            @for (state of playedStatesArray; track $index) {
+              <mat-list-item>{{ state }}</mat-list-item>
+            }
+          </mat-list>
+        </mat-card>
+        <button mat-flat-button (click)="restartGame()">Reset Game</button>
+      </mat-card>
+      <mat-card class="country-card">
+        <mat-card class="steps-input-card">
+          <mat-card class="input-card">
+            <div>
+              <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <input
+                  type="text"
+                  placeholder="Guess a state"
+                  matInput
+                  [formControl]="stateCtrl"
+                  [matAutocomplete]="auto"
+                  (keydown.enter)="submitGuess()"
+                />
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option
+                    *ngFor="let state of filteredStates | async"
+                    [value]="state"
+                  >
+                    {{ state }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            <button mat-flat-button color="primary" (click)="submitGuess()">
+              Submit
+            </button>
+          </mat-card>
+          <!--Mouse over Logic-->
+          <mat-card class="steps-away-card">
+            <div class="currently-away">
+              @if (currentlyAway != null) {
+                <h2>State is {{ currentlyAway }} Away</h2>
+              }
+            </div>
+            <div class="hovered-state">
+              @if (hoveredState) {
+                {{ hoveredState }}
+              }
+            </div>
+          </mat-card>
+        </mat-card>
+        <mat-card class="country">
+          <div
+            [innerHTML]="usMapSvg | safeHtml"
+            (click)="onClick($event)"
+            class="states"
+          ></div>
+        </mat-card>
+      </mat-card>
 
-      <button mat-flat-button color="primary" (click)="submitGuess()">
-        Submit
-      </button>
-    </div>
-    <div class="info-panel">
-      <div class="currently-away">
-        @if (currentlyAway != null) {
-          <h2>State is {{ currentlyAway }} Away</h2>
+      <mat-card class="movie-card">
+        @if (currentMedia) {
+          <div class="movie-container">
+            <img
+              [src]="
+                'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path
+              "
+              [alt]="currentMedia.title"
+            />
+            <a>
+              {{ currentMedia.overview }}
+            </a>
+          </div>
         }
-      </div>
-      <div class="hovered-state">
-        @if (hoveredState) {
-          {{ hoveredState }}
-        }
-      </div>
+      </mat-card>
     </div>
-    <div
-      [innerHTML]="usMapSvg | safeHtml"
-      (click)="onClick($event)"
-      class="states"
-    ></div>
-    <h3>Score: {{ score }}</h3>
   } @else {
     <h1>Congratulations! You have guessed all the states!</h1>
     <p>Your final score is: {{ score }}</p>
