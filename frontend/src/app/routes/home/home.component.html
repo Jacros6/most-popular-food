@@ -3,84 +3,109 @@
     <div class="game-separator">
       <mat-card class="score-card">
         <mat-card class="round">
-          <h3>Round: {{ currentRound }}</h3>
+          <mat-card-header>
+            <mat-card-title>Game Information</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content style="display: flex; flex-direction: column">
+            <a>Round: {{ currentRound }}</a>
+            <a>Score: {{ score }}</a>
+          </mat-card-content>
         </mat-card>
-        <mat-card class="score">
-          <h3>Score: {{ score }}</h3>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>State History</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content class="country-list">
+            <mat-list>
+              @for (state of playedStatesArray; track $index) {
+                <mat-list-item>{{ state }}</mat-list-item>
+              }
+            </mat-list>
+          </mat-card-content>
         </mat-card>
-        <mat-card class="country-list">
-          <mat-list>
-            @for (state of playedStatesArray; track $index) {
-              <mat-list-item>{{ state }}</mat-list-item>
-            }
-          </mat-list>
-        </mat-card>
-        <button mat-flat-button (click)="restartGame()">Reset Game</button>
+        <mat-card-actions>
+          <button mat-flat-button (click)="restartGame()">Reset Game</button>
+        </mat-card-actions>
       </mat-card>
       <mat-card class="country-card">
-        <mat-card class="steps-input-card">
-          <mat-card class="input-card">
-            <div>
-              <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                <input
-                  type="text"
-                  placeholder="Guess a state"
-                  matInput
-                  [formControl]="stateCtrl"
-                  [matAutocomplete]="auto"
-                  (keydown.enter)="submitGuess()"
-                />
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option
-                    *ngFor="let state of filteredStates | async"
-                    [value]="state"
-                  >
-                    {{ state }}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-            </div>
-            <button mat-flat-button color="primary" (click)="submitGuess()">
-              Submit
-            </button>
-          </mat-card>
-          <!--Mouse over Logic-->
-          <mat-card class="steps-away-card">
-            <div class="currently-away">
-              @if (currentlyAway != null) {
-                <h2>State is {{ currentlyAway }} Away</h2>
-              }
-            </div>
-            <div class="hovered-state">
-              @if (hoveredState) {
-                {{ hoveredState }}
-              }
-            </div>
-          </mat-card>
-        </mat-card>
-        <mat-card class="country">
-          <div
-            [innerHTML]="usMapSvg | safeHtml"
-            (click)="onClick($event)"
-            class="states"
-          ></div>
-        </mat-card>
-      </mat-card>
-
-      <mat-card class="movie-card">
-        @if (currentMedia) {
-          <div class="movie-container">
-            <img
-              [src]="
-                'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path
+        <div
+          style="flex: 0.85; display: flex; flex-direction: column; gap: 0.5em"
+        >
+          <mat-card class="steps-input-card">
+            <div
+              style="
+                flex: 0.5;
+                display: flex;
+                flex-direction: row;
+                gap: 0.5em;
+                justify-content: center;
+                align-items: center;
               "
-              [alt]="currentMedia.title"
-            />
-            <a>
-              {{ currentMedia.overview }}
-            </a>
-          </div>
-        }
+            >
+              <div style="display: flex; flex-direction: column; flex: 1">
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <input
+                    type="text"
+                    placeholder="Guess a state"
+                    matInput
+                    [formControl]="stateCtrl"
+                    [matAutocomplete]="auto"
+                    (keydown.enter)="submitGuess()"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option
+                      *ngFor="let state of filteredStates | async"
+                      [value]="state"
+                    >
+                      {{ state }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <button mat-flat-button color="primary" (click)="submitGuess()">
+                Submit
+              </button>
+            </div>
+            <!--Mouse over Logic-->
+            <mat-divider [vertical]="true" style="height: 100%"></mat-divider>
+            <div style="flex: 0.5">
+              <div class="hovered-state">
+                @if (hoveredState) {
+                  <h2>{{ hoveredState }}</h2>
+                }
+              </div>
+              <div class="currently-away">
+                @if (currentlyAway != null) {
+                  State is {{ currentlyAway }} Away
+                }
+              </div>
+            </div>
+          </mat-card>
+          <mat-card class="country">
+            <div
+              [innerHTML]="usMapSvg | safeHtml"
+              (click)="onClick($event)"
+              class="states"
+            ></div>
+          </mat-card>
+        </div>
+        <mat-card class="movie-card">
+          @if (currentMedia) {
+            <div class="movie-container">
+              <img
+                [src]="
+                  'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path
+                "
+                [alt]="currentMedia.title"
+              />
+              <a style="font-size: large">
+                {{ currentMedia.overview }}
+              </a>
+            </div>
+          }
+        </mat-card>
       </mat-card>
     </div>
   } @else {

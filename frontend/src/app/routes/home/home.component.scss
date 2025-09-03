@@ -1,6 +1,5 @@
 .currently-away {
-  min-height: 68px;
-  max-height: 68px;
+  min-height: 24px;
   margin: 0;
 }
 
@@ -19,15 +18,15 @@
   .score-card {
     display: flex;
     flex-direction: column;
-    flex: 0 0 15%;
+    flex: 0.1;
     padding: 1em;
     gap: 0.5em;
     overflow: hidden;
-
+    background-color: #f4f3f6c2;
     .round {
       flex: 0 0 10%;
       justify-content: center;
-      align-items: center;
+      align-items: left;
     }
 
     .score {
@@ -40,13 +39,18 @@
       max-height: 650px;
       overflow-y: auto;
       min-height: 650px;
+      overflow: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
   }
   .country-card {
-    flex: 0.7;
+    flex: 0.9;
     display: flex;
     gap: 0.5em;
     padding: 1em;
+    flex-direction: row;
+    background-color: #f4f3f6c2;
     .country {
       flex: 0.9;
       justify-content: center;
@@ -78,7 +82,7 @@
   .movie-card {
     display: flex;
     flex-direction: column;
-    flex: 0 0 15%;
+    flex: 0.2;
     padding: 1em;
     gap: 0.5em;
     overflow: hidden;
@@ -91,7 +95,7 @@
 
       img {
         width: 100%;
-        min-width: 300px;
+        min-width: 250px;
         object-fit: fill;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -111,7 +115,8 @@
 }
 
 .hovered-state {
-  min-height: 24px;
+  min-height: 68px;
+  max-height: 68px;
 }
 
 .states {
