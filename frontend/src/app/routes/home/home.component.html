@@ -2,6 +2,9 @@
   @if (!gameOver) {
     <div class="game-separator">
       <mat-card class="score-card">
+        <mat-card class="round">
+          <h3>Round: {{ currentRound }}</h3>
+        </mat-card>
         <mat-card class="score">
           <h3>Score: {{ score }}</h3>
         </mat-card>
