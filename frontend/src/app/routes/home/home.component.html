@@ -16,17 +16,20 @@
     <mat-card-header>
       <h1>🎬 Movie State Quiz</h1>
     </mat-card-header>
-    <mat-card-content>
-      <p>Select your game mode:</p>
-    </mat-card-content>
-    <mat-card-footer>
-      <button mat-flat-button color="primary" (click)="toStates('iconic')">
-        Most Iconic Movies (15 Rounds)
-      </button>
 
-      <button mat-flat-button color="accent" (click)="toStates('all')">
-        All 50 States
-      </button>
+    <mat-card-footer>
+      <div class="text">
+        <p>Select your game mode:</p>
+      </div>
+      <div class="button-group">
+        <button mat-flat-button color="primary" (click)="toStates('iconic')">
+          Quick Game
+        </button>
+
+        <button mat-flat-button color="primary" (click)="toStates('all')">
+          All 50 States
+        </button>
+      </div>
     </mat-card-footer>
   </mat-card>
 </div>
