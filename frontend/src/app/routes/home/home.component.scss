@@ -1,144 +1,89 @@
-.currently-away {
-  min-height: 24px;
-  margin: 0;
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: lightblue;
+  color: black;
 }
 
-.game-container {
-  padding: 2em;
-  display: flex;
-  justify-content: center;
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .row {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    width: max-content;
+
+    img {
+      opacity: 0.5;
+      filter: blur(5px);
+      height: 300px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .row-top {
+    top: 5%;
+    animation: scroll-left 60s linear infinite;
+  }
+
+  .row-bottom {
+    bottom: 5%;
+    animation: scroll-right 60s linear infinite;
+  }
 }
 
-.game-separator {
+/* Overlay with game options */
+.overlay {
+  position: relative;
+  z-index: 10;
   display: flex;
-  justify-content: center;
-  gap: 1em;
-  width: 100%;
-  .score-card {
-    display: flex;
-    flex-direction: column;
-    flex: 0.1;
-    padding: 1em;
-    gap: 0.5em;
-    overflow: hidden;
-    background-color: #f4f3f6c2;
-    .round {
-      flex: 0 0 10%;
-      justify-content: center;
-      align-items: left;
-    }
-
-    .score {
-      flex: 0 0 10%;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .country-list {
-      max-height: 650px;
-      overflow-y: auto;
-      min-height: 650px;
-      overflow: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-  }
-  .country-card {
-    flex: 0.9;
-    display: flex;
-    gap: 0.5em;
-    padding: 1em;
-    flex-direction: row;
-    background-color: #f4f3f6c2;
-    .country {
-      flex: 0.9;
-      justify-content: center;
-      align-items: center;
-    }
-    .steps-input-card {
-      flex: 0.1;
-      align-items: center;
-      justify-content: center;
-      flex-direction: row;
-      gap: 2em;
-      padding: 1em;
-      .input-card {
-        flex-direction: row;
-        flex: 0.5;
-        height: 100%;
-        gap: 1em;
-        justify-content: center;
-        align-items: center;
-      }
-      .steps-away-card {
-        flex: 0.5;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-  }
-  .movie-card {
-    height: 100%;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-    gap: 0.5em;
-    overflow: hidden;
-    align-items: stretch;
-    flex: 0.2;
-
-    .movie-container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75em;
-      flex: 1;
-      min-height: 0;
-      align-items: stretch;
-
-      img {
-        width: 100%;
-        height: auto;
-        max-height: 60%;
-        object-fit: cover;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      }
-
-      .overview {
-        flex: 1;
-        min-height: 0;
-        overflow-y: auto;
-        width: 100%;
-        font-size: 0.9rem;
-        line-height: 1.4;
-        text-align: left;
-        padding-right: 0.25rem;
-        word-break: break-word;
-      }
-    }
-  }
-}
-
-.hovered-state {
-  min-height: 68px;
-  max-height: 68px;
-}
-
-.states {
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  svg {
-    width: 100%;
-    height: auto;
-    display: block;
+  justify-content: center;
+  height: 100%;
+  gap: 1.5rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
   }
 
-  path[fill="#f9f9f9"]:hover {
-    filter: brightness(0.7);
-    cursor: pointer;
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    width: 250px;
+  }
+}
+
+/* Animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
