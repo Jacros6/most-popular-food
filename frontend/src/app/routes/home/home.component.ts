@@ -12,13 +12,13 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: 'home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  images: string[] = MOVIE_IMAGES;
+
 
   constructor(private readonly router: Router) {}
 
   ngOnInit() {}
 
-  toStates(mode: 'iconic' | 'all') {
-    this.router.navigate(['/states']);
+  toStates(mode: 'short' | 'all') {
+    this.router.navigate(['/states'], { queryParams: { mode: mode } });
   }
 }

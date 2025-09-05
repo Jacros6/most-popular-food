@@ -20,6 +20,8 @@ import { map, Observable, startWith } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GameOverComponent } from './game-over/game-over.component';
 
 @Component({
   standalone: true,
@@ -33,6 +35,7 @@ import { MatListModule } from '@angular/material/list';
     ReactiveFormsModule,
     MatCardModule,
     MatListModule,
+    GameOverComponent,
   ],
   selector: 'app-home',
   templateUrl: 'states.component.html',
@@ -67,6 +70,7 @@ export class StatesComponent implements OnInit {
   playedStatesInRound: { id: string; name: string; stepsAway: number }[] = [];
   score = 0;
   attemptsThisRound = 0;
+  maxRounds = 50;
 
   gameOver = false;
 
@@ -74,6 +78,8 @@ export class StatesComponent implements OnInit {
     private el: ElementRef,
     private renderer: Renderer2,
     private readonly mediaService: MediaService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
   ) {
     this.filteredStates = this.stateCtrl.valueChanges.pipe(
       startWith(''),
@@ -86,6 +92,15 @@ export class StatesComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.route.queryParamMap.subscribe((params) => {
+      const mode = params.get('mode');
+      if (mode === 'short') {
+        this.maxRounds = 15;
+      } else {
+        this.maxRounds = 50;
+      }
+    });
+
     this.mediaList = await this.mediaService.loadJson();
     console.log(this.mediaList);
     fetch('assets/us.svg')
@@ -106,6 +121,7 @@ export class StatesComponent implements OnInit {
     this.PLAYABLE_STATES = [...PLAYABLE_STATES];
     this.getNewState();
     this.resetColors();
+    this.router.navigate(['']);
   }
 
   onStateHover() {
@@ -171,7 +187,11 @@ export class StatesComponent implements OnInit {
   }
 
   private getNewState() {
-    if (this.PLAYABLE_STATES.length === 0) {
+    console.log(this.maxRounds, this.currentRound);
+    if (
+      this.PLAYABLE_STATES.length === 0 ||
+      this.maxRounds <= this.currentRound
+    ) {
       this.gameOver = true;
       return;
     }
@@ -241,7 +261,18 @@ export class StatesComponent implements OnInit {
   }
 
   private getFillColor(distance: number): string {
-    return this.FILL_COLORS[distance] ?? this.FILL_COLORS['default'];
+    if (distance === 0) {
+      return 'hsla(120, 100%, 50%, 1.00)';
+    }
+    if (distance === -1) {
+      return '#999999';
+    }
+
+    const stepRotation = -25;
+    const baseHue = 100;
+    const hue = (baseHue + distance * stepRotation) % 360;
+
+    return `hsl(${hue}, 100%, 50%)`;
   }
 
   private addPointsForRound() {
@@ -271,6 +302,6 @@ export class StatesComponent implements OnInit {
         }
       }
     }
-    return 0;
+    return -1;
   }
 }

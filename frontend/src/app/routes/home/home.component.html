@@ -1,15 +1,4 @@
-<div class="background">
-  <div class="row row-top">
-    @for (img of images; track $index) {
-      <img [src]="img" alt="movie cover" />
-    }
-  </div>
-  <div class="row row-bottom">
-    @for (img of images; track $index) {
-      <img [src]="img" alt="movie cover" />
-    }
-  </div>
-</div>
+
 
 <div class="overlay">
   <mat-card>
@@ -22,7 +11,7 @@
         <p>Select your game mode:</p>
       </div>
       <div class="button-group">
-        <button mat-flat-button color="primary" (click)="toStates('iconic')">
+        <button mat-flat-button color="primary" (click)="toStates('short')">
           Quick Game
         </button>
 
