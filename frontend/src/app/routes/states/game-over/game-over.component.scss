@@ -1,0 +1,49 @@
+.movies-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.movies-grid-container {
+  height: calc(100vh - 200px); /* adjust 200px if you have header/footer */
+  overflow-y: auto; /* allow vertical scrolling */
+  padding: 1rem;
+}
+
+.movie-card {
+  min-width: 200px;
+  max-width: 220px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  height: 450px;
+  img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .movie-title {
+    font-weight: 600;
+    color: #3f51b5;
+    text-decoration: none;
+  }
+
+  .movie-title:hover {
+    text-decoration: underline;
+  }
+
+  .movie-overview {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+}
+
+mat-card-content {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

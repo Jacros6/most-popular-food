@@ -71,6 +71,7 @@ export class StatesComponent implements OnInit {
   score = 0;
   attemptsThisRound = 0;
   maxRounds = 50;
+  playedMedia: any[] = [];
 
   gameOver = false;
 
@@ -88,7 +89,7 @@ export class StatesComponent implements OnInit {
   }
 
   get playedStatesArray(): any[] {
-    return this.playedStatesInRound.reverse();
+    return [...this.playedStatesInRound].reverse();
   }
 
   async ngOnInit() {
@@ -160,6 +161,10 @@ export class StatesComponent implements OnInit {
     if (!stateName) return;
 
     if (stateId === this.currentState) {
+      this.playedMedia.push({
+        state: this.currentState,
+        media: this.currentMedia,
+      });
       this.nextRound(target, stateId);
       return;
     }
@@ -192,6 +197,8 @@ export class StatesComponent implements OnInit {
       this.PLAYABLE_STATES.length === 0 ||
       this.maxRounds <= this.currentRound
     ) {
+      console.log('game over');
+      console.log(this.playedMedia);
       this.gameOver = true;
       return;
     }
@@ -211,6 +218,10 @@ export class StatesComponent implements OnInit {
     if (this.playedStatesInRound.find((s) => s.id === abbr)) return;
     const target = document.querySelector(`[data-id='${abbr}']`) as HTMLElement;
     if (abbr === this.currentState) {
+      this.playedMedia.push({
+        state: this.currentState,
+        media: this.currentMedia,
+      });
       this.nextRound(target, abbr);
       return;
     }
