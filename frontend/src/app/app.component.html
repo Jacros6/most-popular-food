@@ -1,3 +1,15 @@
+<div class="background">
+  <div class="row row-top">
+    @for (img of images; track $index) {
+      <img [src]="img" alt="movie cover" />
+    }
+  </div>
+  <div class="row row-bottom">
+    @for (img of images; track $index) {
+      <img [src]="img" alt="movie cover" />
+    }
+  </div>
+</div>
 <main class="home">
-    <router-outlet />
+  <router-outlet />
 </main>

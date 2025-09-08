@@ -1,0 +1,124 @@
+@if (!gameOver) {
+  <div class="game-container">
+    <div class="game-separator">
+      <mat-card class="score-card">
+        <mat-card class="round">
+          <mat-card-header>
+            <mat-card-title>Game</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content style="display: flex; flex-direction: column">
+            <a>Round: {{ currentRound }}</a>
+            <a>Score: {{ score }}</a>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Round History</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content class="country-list">
+            <mat-list>
+              @for (state of playedStatesArray; track $index) {
+                <mat-list-item
+                  >{{ state.name }} - Steps:
+                  {{ state.stepsAway }}</mat-list-item
+                >
+              }
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+        <mat-card-actions>
+          <button mat-flat-button (click)="restartGame()" color="primary">
+            Reset Game
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card class="country-card">
+        <div
+          style="flex: 0.85; display: flex; flex-direction: column; gap: 0.5em"
+        >
+          <mat-card class="steps-input-card">
+            <div
+              style="
+                flex: 0.5;
+                display: flex;
+                flex-direction: row;
+                gap: 0.5em;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <div style="display: flex; flex-direction: column; flex: 1">
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                  <input
+                    type="text"
+                    placeholder="Guess a state"
+                    matInput
+                    [formControl]="stateCtrl"
+                    [matAutocomplete]="auto"
+                    (keydown.enter)="submitGuess()"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option
+                      *ngFor="let state of filteredStates | async"
+                      [value]="state"
+                    >
+                      {{ state }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <button mat-flat-button color="primary" (click)="submitGuess()">
+                Submit
+              </button>
+            </div>
+            <!--Mouse over Logic-->
+            <mat-divider [vertical]="true" style="height: 100%"></mat-divider>
+            <div style="flex: 0.5">
+              <div class="hovered-state">
+                @if (hoveredState) {
+                  <h2>{{ hoveredState }}</h2>
+                }
+              </div>
+              <div class="currently-away">
+                @if (currentlyAway != null) {
+                  State is {{ currentlyAway }} Away
+                }
+              </div>
+            </div>
+          </mat-card>
+          <mat-card class="country">
+            <div
+              [innerHTML]="usMapSvg | safeHtml"
+              (click)="onClick($event)"
+              class="states"
+            ></div>
+          </mat-card>
+        </div>
+        <mat-card class="movie-card">
+          @if (currentMedia) {
+            <div class="movie-container">
+              <img
+                [src]="
+                  'https://image.tmdb.org/t/p/w300' + currentMedia.poster_path
+                "
+                [alt]="currentMedia.title"
+              />
+
+              <div class="overview">
+                {{ currentMedia.overview }}
+              </div>
+            </div>
+          }
+        </mat-card>
+      </mat-card>
+    </div>
+  </div>
+} @else {
+  <app-game-over
+    [score]="score"
+    [playedMedia]="playedMedia"
+    style="width: 100%; display: flex; overflow-x: hidden"
+  ></app-game-over>
+}

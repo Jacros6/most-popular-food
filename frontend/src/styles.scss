@@ -1,4 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use "@angular/material" as mat;
+@include mat.core();
+
+$theme-primary: mat.m2-define-palette(mat.$m2-indigo-palette, A400, A100, A700);
+$theme-accent: mat.m2-define-palette(mat.$m2-indigo-palette);
+$theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: map-get($theme-primary, 200);
+  color: map-get($theme-primary, 900);
+}
+
+app-home {
+  flex: 1;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: row;
+  display: flex;
+}

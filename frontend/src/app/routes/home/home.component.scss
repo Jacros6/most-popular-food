@@ -1,98 +1,96 @@
-.movie-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 750px;
-  gap: 2em;
+@use "@angular/material" as mat;
+@use "../../../styles.scss" as style;
+@include mat.core();
+
+$primary-A400: map-get(style.$theme-primary, A400);
+$accent-A400: map-get(style.$theme-accent, A400);
+$primary-A700: map-get(style.$theme-primary, A700);
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  color: black;
 }
 
-.input-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-
-.states path {
-  transition: filter 0.3s ease;
-}
-
-.states path[fill="#f9f9f9"]:hover {
-  filter: brightness(0.7);
-  cursor: pointer;
-}
-
-/* Container for the whole component */
-.game-container {
-  min-height: 100vh;
+.overlay {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  font-family: "Segoe UI", Roboto, sans-serif;
-  gap: 2rem;
-}
-
-/* Round header */
-.game-container h2:first-of-type {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2d3748;
-}
-
-/* Media poster */
-.media-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.media-card img {
-  width: 200px;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  margin-top: 0.5rem;
-}
-
-/* Autocomplete input field */
-mat-form-field {
-  width: 300px;
-}
-
-button {
-  margin-top: 0.5rem;
-}
-
-/* Map container */
-.states {
-  width: 100%;
-  max-width: 900px;
-  margin-top: 2rem;
-}
-
-/* Your existing SVG hover */
-.states path {
-  transition: filter 0.3s ease;
-}
-
-.states path[fill="#f9f9f9"]:hover {
-  filter: brightness(0.7);
-  cursor: pointer;
-}
-
-/* Distance & hovered state info */
-.info-panel {
+  justify-content: center;
+  height: 100%;
+  gap: 1.5rem;
   text-align: center;
-  font-size: 1.2rem;
-  color: #4a5568;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    width: 250px;
+  }
 }
 
-.info-panel .hovered-state {
-  margin-top: 0.3rem;
+mat-card {
+  height: 25%;
+  width: 35%;
+  justify-content: space-between;
+  padding: 1em;
+
+  mat-card-footer {
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .text {
+      text-align: center;
+    }
+    .button-group {
+      display: flex;
+      gap: 0.5em;
+      justify-content: center;
+    }
+  }
+
+  mat-card-header {
+    justify-content: center;
+  }
+}
+.app-logo__title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+
+.app-logo__word--primary {
+  background: linear-gradient(90deg, $primary-A400, $accent-A400);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.app-logo__word--middle {
   font-weight: 600;
-  color: #2b6cb0;
+  font-size: 0.6em;
+  padding: 0.2em 0.6em;
+  border-radius: 9999px;
+  background-color: black;
+  color: white;
+  align-self: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }

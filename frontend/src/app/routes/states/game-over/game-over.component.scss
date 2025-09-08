@@ -1,0 +1,88 @@
+@use "@angular/material" as mat;
+@use "../../../../styles.scss" as style;
+@include mat.core();
+
+$primary-A400: map-get(style.$theme-primary, A400);
+$accent-A400: map-get(style.$theme-accent, A400);
+$primary-A700: map-get(style.$theme-primary, A700);
+
+.game-over-container {
+  width: 100%;
+  z-index: 2;
+  padding: 2em;
+}
+
+.congratulations-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movies-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.movies-grid-container {
+  padding: 1rem;
+}
+
+.movie-card {
+  min-width: 200px;
+  max-width: 220px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  height: 450px;
+  img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .movie-title {
+    font-weight: 600;
+    color: #3f51b5;
+    text-decoration: none;
+  }
+
+  .movie-title:hover {
+    text-decoration: underline;
+  }
+
+  .movie-overview {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+}
+
+mat-card-content {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.app-logo__title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+
+.app-logo__word--primary {
+  background: linear-gradient(90deg, $primary-A400, $accent-A400);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}

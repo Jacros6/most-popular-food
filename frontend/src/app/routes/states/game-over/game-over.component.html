@@ -1,0 +1,46 @@
+<div class="game-over-container">
+  <div style="display: flex; justify-content: center">
+    <mat-card style="width: 40%">
+      <mat-card-header style="justify-content: center">
+        <mat-card-title>
+          <h1 class="app-logo__title mat-display-large">
+            <span class="app-logo__word app-logo__word--primary"
+              >Congratulations!</span
+            >
+          </h1>
+          <a>You have guessed all the states!</a>
+        </mat-card-title>
+        <mat-card-subtitle>Your final score is: {{ score }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions style="justify-content: center">
+        <button mat-flat-button color="primary" (click)="restartGame()">
+          Play Again
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="movies-grid-container">
+    <div class="movies-grid">
+      @for (movie of playedMedia; track $index) {
+        <mat-card class="movie-card">
+          <img
+            mat-card-image
+            [src]="'https://image.tmdb.org/t/p/w200' + movie.media.poster_path"
+            [alt]="movie.media.title"
+          />
+
+          <mat-card-content>
+            <a>
+              {{ movie.media.title }}
+            </a>
+            <div>
+              <p class="movie-overview">
+                {{ movie.media.overview }}
+              </p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</div>
