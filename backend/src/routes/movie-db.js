@@ -17,20 +17,24 @@ router.get("/get-media", async (req, res) => {
 
     let data;
     console.log(id, isTv);
-
+    let filtered_data;
     if (isTv) {
       data = await moviedb.tvInfo({ id });
+      filtered_data = {
+        overview: data.overview,
+        title: data.name,
+        poster_path: data.poster_path,
+      };
     } else {
       data = await moviedb.movieInfo({ id });
+      filtered_data = {
+        overview: data.overview,
+        title: data.title,
+        poster_path: data.poster_path,
+      };
     }
 
     data.overview = sanitize(data.overview);
-
-    const filtered_data = {
-      overview: data.overview,
-      title: data.title,
-      poster_path: data.poster_path,
-    };
 
     return res.json(filtered_data);
   } catch (error) {

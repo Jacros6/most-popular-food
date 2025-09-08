@@ -1,5 +1,5 @@
-<div class="game-container">
-  @if (!gameOver) {
+@if (!gameOver) {
+  <div class="game-container">
     <div class="game-separator">
       <mat-card class="score-card">
         <mat-card class="round">
@@ -29,7 +29,9 @@
           </mat-card-content>
         </mat-card>
         <mat-card-actions>
-          <button mat-flat-button (click)="restartGame()">Reset Game</button>
+          <button mat-flat-button (click)="restartGame()" color="primary">
+            Reset Game
+          </button>
         </mat-card-actions>
       </mat-card>
       <mat-card class="country-card">
@@ -112,7 +114,11 @@
         </mat-card>
       </mat-card>
     </div>
-  } @else {
-    <app-game-over [score]="score" [playedMedia]="playedMedia"></app-game-over>
-  }
-</div>
+  </div>
+} @else {
+  <app-game-over
+    [score]="score"
+    [playedMedia]="playedMedia"
+    style="width: 100%; display: flex; overflow-x: hidden"
+  ></app-game-over>
+}

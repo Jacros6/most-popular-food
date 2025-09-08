@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   standalone: true,
-  imports: [MatDivider, MatButtonModule, MatCardModule],
+  imports: [MatButtonModule, MatCardModule],
   selector: 'app-game-over',
   templateUrl: 'game-over.component.html',
   styleUrl: 'game-over.component.scss',

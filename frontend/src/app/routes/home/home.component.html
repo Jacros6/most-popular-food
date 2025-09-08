@@ -1,15 +1,16 @@
-
-
 <div class="overlay">
   <mat-card>
     <mat-card-header>
-      <h1>🎬 Movie State Quiz</h1>
+      <div class="app-logo" aria-label="State of the Screen">
+        <h1 class="app-logo__title mat-display-large">
+          <span class="app-logo__word app-logo__word--primary">State</span>
+          <span class="app-logo__word app-logo__word--middle">on the</span>
+          <span class="app-logo__word app-logo__word--primary">Screen</span>
+        </h1>
+      </div>
     </mat-card-header>
 
     <mat-card-footer>
-      <div class="text">
-        <p>Select your game mode:</p>
-      </div>
       <div class="button-group">
         <button mat-flat-button color="primary" (click)="toStates('short')">
           Quick Game
