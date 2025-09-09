@@ -15,9 +15,7 @@ export class GameOverComponent {
   @Input() score: number = 0;
   @Input() playedMedia: any[] = [];
   constructor(private readonly router: Router) {}
-  ngOnInit() {
-    console.log(this.playedMedia);
-  }
+
   restartGame() {
     this.router.navigate(['']);
   }

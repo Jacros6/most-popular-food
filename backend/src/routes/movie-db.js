@@ -16,7 +16,6 @@ router.get("/get-media", async (req, res) => {
     }
 
     let data;
-    console.log(id, isTv);
     let filtered_data;
     if (isTv) {
       data = await moviedb.tvInfo({ id });

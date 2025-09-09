@@ -12,8 +12,6 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: 'home.component.scss',
 })
 export class HomeComponent implements OnInit {
-
-
   constructor(private readonly router: Router) {}
 
   ngOnInit() {}

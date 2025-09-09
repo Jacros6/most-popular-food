@@ -103,7 +103,7 @@ export class StatesComponent implements OnInit {
     });
 
     this.mediaList = await this.mediaService.loadJson();
-    console.log(this.mediaList);
+
     fetch('assets/us.svg')
       .then((res) => res.text())
       .then((svg) => {
@@ -192,13 +192,10 @@ export class StatesComponent implements OnInit {
   }
 
   private getNewState() {
-    console.log(this.maxRounds, this.currentRound);
     if (
       this.PLAYABLE_STATES.length === 0 ||
       this.maxRounds <= this.currentRound
     ) {
-      console.log('game over');
-      console.log(this.playedMedia);
       this.gameOver = true;
       return;
     }
