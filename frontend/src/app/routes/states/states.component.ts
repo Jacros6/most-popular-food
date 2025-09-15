@@ -22,6 +22,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameOverComponent } from './game-over/game-over.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   standalone: true,
@@ -36,6 +38,8 @@ import { GameOverComponent } from './game-over/game-over.component';
     MatCardModule,
     MatListModule,
     GameOverComponent,
+    MatIconModule,
+    MatSidenavModule,
   ],
   selector: 'app-home',
   templateUrl: 'states.component.html',
@@ -74,6 +78,12 @@ export class StatesComponent implements OnInit {
   playedMedia: any[] = [];
 
   gameOver = false;
+
+  drawerOpen = false;
+
+  toggleDrawer() {
+    this.drawerOpen = !this.drawerOpen;
+  }
 
   constructor(
     private el: ElementRef,

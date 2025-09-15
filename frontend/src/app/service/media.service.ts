@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 export interface MediaEntry {
   id: number;
@@ -16,9 +17,11 @@ export interface StateMedia {
 @Injectable({ providedIn: 'root' })
 export class MediaService {
   private jsonUrl = `assets/motion-pictures-states.json`;
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.backendUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log(this.apiUrl);
+  }
 
   async loadJson(): Promise<StateMedia> {
     return await firstValueFrom(this.http.get<StateMedia>(this.jsonUrl));

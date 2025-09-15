@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { MovieDb } = require("moviedb-promise");
 const moviedb = new MovieDb(process.env.TMDB_API_KEY);
-const keywords = require("../filters/stateKeywords.json");
+const path = require("path");
+const keywords = require(path.join(__dirname, "../filters/stateKeywords.json"));
 
 router.get("/get-media", async (req, res) => {
   try {
@@ -33,7 +34,7 @@ router.get("/get-media", async (req, res) => {
       };
     }
 
-    data.overview = sanitize(data.overview);
+    filtered_data.overview = sanitize(data.overview);
 
     return res.json(filtered_data);
   } catch (error) {
@@ -43,6 +44,7 @@ router.get("/get-media", async (req, res) => {
 });
 
 function sanitize(text) {
+  console.log(keywords);
   for (const word of keywords) {
     const regex = new RegExp(`\\b${word}\\b`, "gi");
     text = text.replace(regex, "_____");
